@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+ 
+
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="initial-scale=1"/>
+      <title>SDY51</title>
+      <!---------------------------------------------------My code-------------------------------------------->
+     <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+	 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+	
+	<!-- Firebase App is always required and must be first -->
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+
+	<!-- Add additional services that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
+ 
+
+	
+	
+	<script>
+	  // Initialize Firebase
+	  var config = {
+		apiKey: "AIzaSyAlW9YD1FZMq5Xw_E5bEHxiiU-eGhyxEkI",
+		authDomain: "sdy-51.firebaseapp.com",
+		databaseURL: "https://sdy-51.firebaseio.com",
+		projectId: "sdy-51",
+		storageBucket: "sdy-51.appspot.com",
+		messagingSenderId: "134979532230"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+     
+      <!-- load jQuery  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- load Font-Awesome -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+     
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
+      <link rel="stylesheet" href="style.css">
+	  
+ 
+   </head>
+   <body>
+   
+     <!-- <button   id="emailSignInBtn" type="button" class="btn btn-info btn-lg">Είσοδος με email</button>-->
+	 <button   id="emailSignInBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#loginModal">Είσοδος με email</button>
+	 
+	 <button   id="facebookSignInBtn" type="button" class="btn btn-info btn-lg">Είσοδος Facebook</button>
+	 <button   id="addReminderBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addReminderModal">Δημιουργία Υπενθύμισης</button>
+	 <button   id="editProfilBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editProfilModal">Επεξεργασία Προφίλ</button>
+	  <button   id="logoutBtn" type="button" class="btn btn-info btn-lg" onclick="logout()">Logout</button>
+	 
+      <div id="firebaseui-auth-container"></div>
+	  
+	   
+      <script src="js/signIn.js"></script>
+	  <script src="js/script.js"></script>
+	  
+	  
+	  
+	  
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div id="addReminderModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Δημιουργία Υπενθύμισης</h4>
+      </div>
+      <div class="modal-body">
+		<p>Μήνυμα</p>		 
+		<textarea id="message" rows="4" cols="50"></textarea>
+		
+		<input type="time" id="time" name="time">
+		<input type="date" id="date" name="date">
+		<div class="custom-select" id="daily" style="width:200px;">
+		  <select>
+			<option value="0">Όχι</option>
+			<option value="1">Ναι</option>
+		  </select>
+		</div>
+      </div>
+      <div class="modal-footer">
+		<button id="saveBtn" type="button" class="btn btn-default" onclick="onSaveBtnClick()">Αποθήκευση</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div id="editProfilModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Προφίλ</h4>
+      </div>
+      <div class="modal-body">
+		<p>Όνομα</p>		
+		<input type="text" id="name" >
+		<p>Έπωνυμο</p>
+		<input type="text" id="surname" >
+		<p>Ηλικία</p>
+		<input type="text" id="age" >
+		<p>Πόλη</p>
+		<input type="text" id="city" >
+		<p>Διεύθυνση</p>
+		<input type="text" id="address" >
+      </div>
+      <div class="modal-footer">
+		<button id="saveBtn" type="button" class="btn btn-default" onclick="onSaveProfileBtnClick()">Αποθήκευση</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!-- Trigger the modal with a button -->
+<!-- Modal -->
+<div id="loginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+		<p>email</p>		
+		<input type="text" id="emailLogin">
+		<p>password</p>
+		<input type="text" id="passwordLogin">		
+      </div>
+      <div class="modal-footer">
+		<button type="button" class="btn btn-default" onclick="signInWithEmailAndPassword()">Είσοδος</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Κλείσιμο</button>
+      </div> 
+    </div>
+  </div>
+</div>
+
+   </body>
+</html>
