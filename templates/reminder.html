@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ΔΗΜΙΟΥΡΓΙΑ ΥΠΕΝΘΥΜΙΣΗΣ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="../css/custom_style.css" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+ 
+   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+   
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+ 
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
+
+
+<script src="../js/init.js"></script> 
+    <script type="text/javascript">
+           $(document).ready(function(){
+            var date_input=$('input[name="date"]'); 
+             date_input.datepicker();
+});
+                    </script>
+
+</head>
+<body>
+
+	<form id="create-reminder" action="#">
+
+<!-- Message of reminder -->
+<div class="form-group">
+  <h4>  <label for="reminder-msg">Μήνυμα Υπενθύμισης</label> </h4>
+       <textarea class="form-control" id="reminderMsgTextarea" rows="3"></textarea>
+    <small id="remiderMsgHelp" class="form-text text-muted">Προσθέστε το μήνυμα της υπενθύμισης</small>
+  </div>
+
+<!-- Date of reminder -->
+<div class="form-group">
+ <h4> <label for="reminder-date-input" class="col-2 col-form-label">Ημερομηνία Υπενθύμισης</label></h4>
+  <div class="col-10">
+    <input class="form-control" type="date" value="" id="reminder-date-input">
+     <small id="remiderDateHelp" class="form-text text-muted">Προσθέστε την ημέρα της υπενθύμισης</small>
+  </div>
+</div>
+
+<!-- Hour of reminder -->
+<div class="form-group">
+ <h4> <label for="reminder-time-input" class="col-2 col-form-label">Ώρα Υπενθύμισης</label></h4>
+  <div class="col-10">
+    <input class="form-control" type="time" value="" id="reminder-time-input">
+     <small id="remiderTimeHelp" class="form-text text-muted">Προσθέστε την ώρα της υπενθύμισης</small>
+  </div>
+</div>
+
+<!-- Daily -->
+<div class="form-check mb-2 mr-sm-2 mb-sm-0">
+   <h4> <label>
+    <input id="reminder-daily"  type="checkbox"  data-toggle="toggle">
+   Καθημερινή Επανάληψη
+  </label> </h4> </br>       <small id="remiderTimeHelp" class="form-text text-muted">Σύρετε το κουμπί για να ενεργοποιήσετε την καθημερινή επανάληψη</small>
+
+  </div>
+
+  <!-- Active -->
+<div class="form-check mb-2 mr-sm-2 mb-sm-0">
+<h4><label>
+    <input id="reminder-active" type="checkbox"  data-toggle="toggle" >
+   Ενεργό 
+  </label> </h4></br>       <small id="remiderTimeHelp" class="form-text text-muted">Σύρετε το κουμπί για να ενεργοποιήσετε την υπενθύμιση</small>
+
+  </div>
+
+<button   class="btn-success btn-lg" type="button" id="reminder-save">Αποθήκευση</button>
+<button type="button" class="btn-danger btn-lg" id="reminder-close">Κλείσιμο</button>
+
+
+</form> 
+
+
+<!-- Import and configure the Firebase SDK -->
+<!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+<!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+ 
+ </script>
+  <script src="../js/main.js"></script>
+  <script>
+   
+var saveReminderButtonElement = document.getElementById("reminder-save");
+var closeReminderButtonElement = document.getElementById("reminder-close");
+
+
+saveReminderButtonElement.addEventListener("click", saveReminder);
+closeReminderButtonElement.addEventListener("click", closeReminder);
+
+   </script>
+</body>
+	</html>

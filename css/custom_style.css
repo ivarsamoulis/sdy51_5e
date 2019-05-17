@@ -1,0 +1,21 @@
+.btn-grey {
+    color: #fff;
+    background-color: #909090	;
+    border-color: #909090	;
+}
+
+
+.btn-menu {
+	font-size: 24px;
+	 width: 155px !important;
+  height: 200px !important;
+}
+
+.form-lb{
+		font-size: 24px;
+
+}
+
+.reminders{
+	width: 331px !important;
+}

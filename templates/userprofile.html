@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ΠΡΟΦΙΛ ΧΡΗΣΤΗ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+ <link href="../css/custom_style.css" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
+   <script src="../js/init.js"></script> 
+
+
+</head>
+<body>
+<div class="alert alert-danger" hidden role="alert" id="fail-upd-proflile">
+Η αποθήκευση των στοιχείων δεν ήταν επιτυχής. Δοκιμάστε ξανά.
+</div>
+	<form id="profile-edit" action="#">
+  <div class="form-group">
+    <label for="firstname" class="form-lb">Όνομα</label>
+  <input type="text"  class="form-control form-control-lg" id="profile-edit-firstname" placeholder="Όνομα" required>  </div>
+  <div class="form-group">
+   <label for="lastname" class="form-lb">Επώνυμο</label>
+  <input type="text" class="form-control form-control-lg" id="profile-edit-lastname" placeholder="Επώνυμο">  </div>
+  </div>
+  <div class="form-group">
+   <label for="age" class="form-lb">Ηλικία</label>
+  <input type="text" class="form-control form-control-lg" id="profile-edit-age" placeholder="Ηλικία">  </div>
+  </div>
+   <div class="form-group">
+   <label for="city" class="form-lb">Πόλη</label>
+  <input type="text" class="form-control form-control-lg" id="profile-edit-city" placeholder="Πόλη">  </div>
+  </div>
+   <div class="form-group">
+   <label for="address" class="form-lb">Διεύθυνση</label>
+  <input type="text" class="form-control form-control-lg" id="profile-edit-address" placeholder="Διεύθυνση">  </div>
+  </div>
+  
+  <button   class="btn-success btn-lg" type="button" id="profile-save">Αποθήκευση</button>
+  <button type="button" class="btn-danger btn-lg" id="profile-close">Κλείσιμο</button>
+</form>
+<!-- Import and configure the Firebase SDK -->
+<!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+<!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+ 
+
+  <script src="../js/main.js"></script>
+  <script>
+var updateProfileButtonElement = document.getElementById("profile-save");
+var closeProfileButtonElement = document.getElementById("profile-close");
+
+
+updateProfileButtonElement.addEventListener("click", updateProfile);
+closeProfileButtonElement.addEventListener("click", closeProfile);
+
+   </script>
+</body>
+	</html>

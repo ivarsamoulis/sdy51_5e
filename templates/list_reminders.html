@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ΛΙΣΤΑ ΥΠΕΝΘΥΜΙΣΕΩΝ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+ <link href="../css/custom_style.css" rel="stylesheet" type="text/css" />
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
+   <script src="../js/init.js"></script> 
+
+
+</head>
+<body>
+ 
+<div class="container">
+  <h2>ΛΙΣΤΑ ΥΠΕΝΘΥΜΙΣΕΩΝ</h2>
+<div class="list-group" id='reminder-list'> </div>
+
+
+<button onclick="MenuReminders()"  class="btn-success btn-lg" type="button" id="back-btn">Επιστροφή στο Μενού</button>
+</div>
+  <script src="../js/list_reminder.js"></script>
+</body>
+    </html>
