@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ΚΑΙΡΟΣ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+  <div class="container" id="weather">
+  	<h2>Ο ΚΑΙΡΟΣ</h2>
+  <!-- 	<p id="demo"></p> -->
+
+
+  </div>
+
+
+  <link type="text/css" rel="stylesheet" href="https://websygen.github.io/owfont/css/bootstrap.min.css" />
+     <link href="../css/custom_style.css" rel="stylesheet" type="text/css" />
+
+   <link type="text/css" rel="stylesheet" href="https://websygen.github.io/owfont/css/owfont-regular.css" />
+
+
+   </body>
+ </head>
+
+  <script>
+
+  //	var x = document.getElementById("demo");
+
+  	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(showPosition);
+
+  	} else { 
+  		x.innerHTML = "Geolocation is not supported by this browser.";
+  	}
+
+  	function showPosition(position) {
+  		var lat=  position.coords.latitude ;
+  		var lon =  position.coords.longitude;
+  		callOpenWeatherApi(lat,lon);
+
+
+}
+  	function CardWeatherRender(responseWeather){
+           
+    const div_weather= document.getElementById("weather");
+    let div_card = document.createElement('div');
+    div_card.classList.add("card");
+
+     var icon = responseWeather.weather[0].id;
+  	 var cls = "owf-"+icon+"-n" 
+  	 let i = document.createElement('i');
+  	 i.classList.add("owf","owf-5x",cls);
+
+       let   div_crd_bd =document.createElement('div');
+       div_crd_bd.classList.add("card-body");
+           let h5card=document.createElement('h3'); 
+           let h3card_temp= document.createElement('h3'); 
+              let h3card_wind= document.createElement('h3'); 
+             let h3card_general =  document.createElement('h3'); 
+          // h5card.textContent = responseWeather.weather[0].main;
+               h5card.textContent = "ΒΑΣΙΚΕΣ ΠΛΗΡΟΦΟΡΙΕΣ ΓΙΑ "+responseWeather.name+","+responseWeather.sys.country;
+          h5card.classList.add("card-title");
+     let span_info = document.createElement('span');
+               span_info.textContent = responseWeather.weather[0].main+"/"+responseWeather.weather[0].description;
+
+ h3card_temp.textContent = "ΘΕΡΜΟΚΡΑΣΙΑ";
+          h3card_temp.classList.add("card-title");
+
+          h3card_wind.textContent = "ΑΝΕΜΟΣ";
+          h3card_wind.classList.add("card-title");
+
+
+          h3card_general.textContent = "ΑΛΛΕΣ ΠΛΗΡΟΦΟΡΙΕΣ";
+          h3card_general.classList.add("card-title");
+
+          let span_info_tmp = document.createElement('span');
+               span_info_tmp.textContent = "Θερμοκρασία: "+responseWeather.main.temp;
+
+
+                 let div_info_min_tmp = document.createElement('div');
+               div_info_min_tmp.textContent = "Ελάχιστη Θερμοκρασία: "+responseWeather.main.temp_min;
+
+  let div_info_max_tmp = document.createElement('div');
+               div_info_max_tmp.textContent = "Μέγιστη Θερμοκρασία: "+responseWeather.main.temp_max;
+
+                 let div_info_pres = document.createElement('div');
+               div_info_pres.textContent = "Πίεση: "+responseWeather.main.pressure;
+
+                 let div_info_hum = document.createElement('div');
+               div_info_hum.textContent ="Υγρασία: "+ responseWeather.main.humidity;
+
+
+                 let div_info_spd = document.createElement('div');
+               div_info_spd.textContent ="Tαχύτητα: "+ responseWeather.wind.speed;
+
+                 let div_info_deg = document.createElement('div');
+               div_info_deg.textContent ="Βαθμός: "+ responseWeather.wind.deg;
+
+
+                 let div_info_sunrise = document.createElement('div');
+               div_info_sunrise.textContent ="Ανατολή Ηλίου: "+ ConvertTimeStampToDate(responseWeather.sys.sunrise);  
+
+
+                 let div_info_sunset = document.createElement('div');
+               div_info_sunset.textContent ="Δύση Ηλίου: "+ ConvertTimeStampToDate(responseWeather.sys.sunset);   
+ 
+
+         div_crd_bd.appendChild(h5card);
+             div_crd_bd.appendChild(span_info);
+                    div_crd_bd.appendChild(h3card_temp);     
+       div_crd_bd.appendChild(span_info_tmp);
+              div_crd_bd.appendChild(div_info_min_tmp);
+       div_crd_bd.appendChild(div_info_max_tmp);
+          div_crd_bd.appendChild(div_info_pres);
+  				          div_crd_bd.appendChild(div_info_hum);
+                      div_crd_bd.appendChild(h3card_wind);     
+         div_crd_bd.appendChild(div_info_spd);
+       div_crd_bd.appendChild(div_info_deg);
+       div_crd_bd.appendChild(h3card_general);
+              div_crd_bd.appendChild(div_info_sunrise);
+ div_crd_bd.appendChild(div_info_sunset);
+
+
+          div_card.appendChild(i);
+          div_card.appendChild(div_crd_bd);
+           
+          div_weather.appendChild(div_card);
+
+
+          ConvertTimeStampToDate(responseWeather.sys.sunrise);   //anatoli iliou
+
+
+  	}
+  	function callOpenWeatherApi(lat,lon){
+  		
+
+  		var xhttp = new XMLHttpRequest();
+  		xhttp.onreadystatechange=function() {
+  			if (this.readyState == 4 && this.status == 200) {
+  				//document.getElementById("demo").innerHTML = this.responseText;
+
+  				var responseWeather =  JSON.parse(this.responseText);
+  				CardWeatherRender(responseWeather);
+  				
+
+
+          }
+      };
+      xhttp.open("GET", "http://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + lat+"&lon="+lon+"&APPID=b8155965f988ba6a8ba1ccc704550844", true);
+      xhttp.send();
+  }
+
+  function ConvertTimeStampToDate(unixtimestamp){
+
+// Months array
+var months_arr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+// Convert timestamp to milliseconds
+var date = new Date(unixtimestamp*1000);
+// Year
+var year = date.getFullYear();
+// Month
+var month = months_arr[date.getMonth()];
+// Day
+var day = date.getDate();
+// Hours
+var hours = date.getHours();
+// Minutes
+var minutes = "0" + date.getMinutes();
+// Seconds
+var seconds = "0" + date.getSeconds();
+// Display date time in MM-dd-yyyy h:m:s format
+var convdataTime = month+'-'+day+'-'+year+' '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+return (convdataTime);
+}
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ΦΑΡΜΑΚΕΙΑ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body>
+  <div class="container" id="weather">
+  	<h2>ΦΑΡΜΑΚΕΙΑ</h2>
+  <!-- 	<p id="demo"></p> -->
+
+
+  </div>
+
+
+  <link type="text/css" rel="stylesheet" href="https://websygen.github.io/owfont/css/bootstrap.min.css" />
+     <link href="../css/custom_style.css" rel="stylesheet" type="text/css" />
+
+   <link type="text/css" rel="stylesheet" href="https://websygen.github.io/owfont/css/owfont-regular.css" />
+
+
+   </body>
+ </head>
+
+  <script>
+
+  //	var x = document.getElementById("demo");
+
+  	if (navigator.geolocation) {
+  		navigator.geolocation.getCurrentPosition(showPosition);
+
+  	} else { 
+  		x.innerHTML = "Geolocation is not supported by this browser.";
+  	}
+
+  	function showPosition(position) {
+  		var lat=  position.coords.latitude ;
+  		var lon =  position.coords.longitude;
+  		callGoogleApi(lat,lon);
+console.log(lat);
+console.log(lon);
+
+
+}
+  	function callGoogleApi(lat,lon){
+           
+    var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange=function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML = this.responseText;
+
+          var responseWeather =  JSON.parse(this.responseText);
+          CardWeatherRender(responseWeather);
+          
+
+
+          }
+      };
+
+      xhttp.open()
+      xhttp.open("GET", "https://www.google.com/maps/search/%CF%86%CE%B1%CF%81%CE%BC%CE%B1%CE%BA%CE%B5%CE%B9%CE%B1/@"+lat+","+lon+"z", true);
+      xhttp.send();
+  	}
+  
+
+ 
+</script>
