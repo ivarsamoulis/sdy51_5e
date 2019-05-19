@@ -44,7 +44,7 @@ function signInWithEmailAndPassword(){
 				console.log("Error getting documents: ", error);
 			});
 			
-			
+			window.location.replace("templates/menu_logged.html");
 			
 			
 		} else {
