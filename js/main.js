@@ -30,19 +30,21 @@ function closeProfile() {
 
 function saveReminder(){
 console.log ('saverReminder');
+
    firebase.firestore().collection('reminder').add({
    message:  document.getElementById("reminderMsgTextarea").value,
    date: document.getElementById("reminder-date-input").value,
    time: document.getElementById("reminder-time-input").value,
    daily:$("#reminder-daily").prop('checked'),
    active: $("#reminder-active").prop('checked'),
+   userUid : firebase.auth().currentUser.uid
   }).catch(function(error) {
   	  console.log ('error');
 	  document.getElementById("#fail-upd-profile").show();
       console.error('Error writing new message to Firebase Database', error);
 
   }); 
-
+ 
   
 
         // Move to a new location or you can do something else

@@ -51,9 +51,13 @@ date.textContent =doc.data().date;
 li.appendChild(message);
 li.appendChild(date);
 list_rem.appendChild(li); */
+ var id ;
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+     id = user.uid;
 
-  
-    firebase.firestore().collection("reminder")
+
+ firebase.firestore().collection("reminder").where("userUid", "==", id)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -67,6 +71,14 @@ list_rem.appendChild(li); */
         console.log("Error getting documents: ", error);
     });
 
+
+
+  } else {
+  alert("No user");
+  }
+});
+
+   
     function MenuReminders(){
 
         setTimeout("location.href = 'menu_reminders.html';",1000);
