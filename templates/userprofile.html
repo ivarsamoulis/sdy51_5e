@@ -25,6 +25,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-functions.js"></script>
    <script src="../js/init.js"></script> 
+     <script src="../js/script.js"></script>
 
 
 </head>
@@ -33,27 +34,28 @@
 Η αποθήκευση των στοιχείων δεν ήταν επιτυχής. Δοκιμάστε ξανά.
 </div>
 	<form id="profile-edit" action="#">
+	 <input type="hidden" id="userProfilId" name="userProfilId" >
   <div class="form-group">
     <label for="firstname" class="form-lb">Όνομα</label>
-  <input type="text"  class="form-control form-control-lg" id="profile-edit-firstname" placeholder="Όνομα" required>  </div>
+  <input type="text"  class="form-control form-control-lg" id="name" placeholder="Όνομα" required>  </div>
   <div class="form-group">
    <label for="lastname" class="form-lb">Επώνυμο</label>
-  <input type="text" class="form-control form-control-lg" id="profile-edit-lastname" placeholder="Επώνυμο">  </div>
+  <input type="text" class="form-control form-control-lg" id="surname" placeholder="Επώνυμο">  </div>
   </div>
   <div class="form-group">
    <label for="age" class="form-lb">Ηλικία</label>
-  <input type="text" class="form-control form-control-lg" id="profile-edit-age" placeholder="Ηλικία">  </div>
+  <input type="text" class="form-control form-control-lg" id="age" placeholder="Ηλικία">  </div>
   </div>
    <div class="form-group">
    <label for="city" class="form-lb">Πόλη</label>
-  <input type="text" class="form-control form-control-lg" id="profile-edit-city" placeholder="Πόλη">  </div>
+  <input type="text" class="form-control form-control-lg" id="city" placeholder="Πόλη">  </div>
   </div>
    <div class="form-group">
    <label for="address" class="form-lb">Διεύθυνση</label>
-  <input type="text" class="form-control form-control-lg" id="profile-edit-address" placeholder="Διεύθυνση">  </div>
+  <input type="text" class="form-control form-control-lg" id="address" placeholder="Διεύθυνση">  </div>
   </div>
   
-  <button   class="btn-success btn-lg" type="button" id="profile-save">Αποθήκευση</button>
+  <button   class="btn-success btn-lg" type="button" id="profile-save"  onclick="onSaveProfileBtnClick()">Αποθήκευση</button>
   <button type="button" class="btn-danger btn-lg" id="profile-close">Κλείσιμο</button>
 </form>
 <!-- Import and configure the Firebase SDK -->
@@ -70,6 +72,7 @@ var closeProfileButtonElement = document.getElementById("profile-close");
 updateProfileButtonElement.addEventListener("click", updateProfile);
 closeProfileButtonElement.addEventListener("click", closeProfile);
 
+getUserProfile();
    </script>
 </body>
 	</html>

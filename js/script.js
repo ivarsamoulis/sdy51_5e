@@ -90,3 +90,32 @@ function onSaveProfileBtnClick () {
 	}
 }
 
+function getUserProfile() { 
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+	db.collection("userProfil").where("userUid", "==", user.uid)
+			.get()
+			.then(function(querySnapshot) {
+				querySnapshot.forEach(function(doc) {
+					// doc.data() is never undefined for query doc snapshots
+				  console.log(doc.id, " => ", doc.data());
+				  $('#userProfilId').val(doc.id);
+				  $('#surname').val(doc.data().surname);
+				  $('#name').val(doc.data().name);
+				  $('#city').val(doc.data().city);
+				  $('#age').val(doc.data().age);
+				  $('#address').val(doc.data().address);
+				});
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error);
+			});
+
+  } else {
+   alert("out");
+  }
+});
+
+
+
+}
