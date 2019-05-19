@@ -87,10 +87,15 @@
 
 </div>
 <script>
-    var counter=0;
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+   var counter=0;
+    console.log('menu'+firebase.auth().currentUser);
+
       const num_rem = document.getElementById("num-reminders");
 
-      firebase.firestore().collection("reminder")
+      firebase.firestore().collection("reminder").where("userUid", "==", user.uid)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -108,6 +113,13 @@
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
+  } else {
+    // No user is signed in.
+  }
+});
+
+
+    
 
 
    </script>
