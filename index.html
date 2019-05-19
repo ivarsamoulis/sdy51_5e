@@ -10,7 +10,8 @@
      <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
 	 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-	
+	  <!--PWA -->
+  <link rel="manifest" href="/manifest.json">
 	<!-- Firebase App is always required and must be first -->
 	<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
 
@@ -52,13 +53,14 @@
    <body>
    
      <!-- <button   id="emailSignInBtn" type="button" class="btn btn-info btn-lg">Είσοδος με email</button>-->
-	 <button   id="emailSignInBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#loginModal">Είσοδος με email</button>
-	 
-	 <button   id="facebookSignInBtn" type="button" class="btn btn-info btn-lg">Είσοδος Facebook</button>
-	 <button   id="addReminderBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addReminderModal">Δημιουργία Υπενθύμισης</button>
-	 <button   id="editProfilBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editProfilModal">Επεξεργασία Προφίλ</button>
-	  <button   id="logoutBtn" type="button" class="btn btn-info btn-lg" onclick="logout()">Logout</button>
-	 
+	 <div style="  position: fixed;  top: 50%;  left: 50%;">
+		 <button   id="emailSignInBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#loginModal">Είσοδος με email</button>
+		 
+		 <button   id="facebookSignInBtn" type="button" class="btn btn-info btn-lg">Είσοδος Facebook</button>
+		   <!--  <button   id="addReminderBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addReminderModal">Δημιουργία Υπενθύμισης</button>
+		 <button   id="editProfilBtn" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editProfilModal">Επεξεργασία Προφίλ</button>
+		  <button   id="logoutBtn" type="button" class="btn btn-info btn-lg" onclick="logout()">Logout</button>-->
+	 </div>
       <div id="firebaseui-auth-container"></div>
 	  
 	   
