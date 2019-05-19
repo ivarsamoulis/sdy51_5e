@@ -21,6 +21,32 @@ function signInWithEmailAndPassword(){
 		  var user = firebase.auth().currentUser;
 		if (user) {
 		  alert(user.uid);
+			$('#addReminderBtn').css("visibility", "visible")
+			$('#editProfilBtn').css("visibility", "visible")
+			$('#logoutBtn').css("visibility", "visible")
+			
+			
+			db.collection("userProfil").where("userUid", "==", user.uid)
+			.get()
+			.then(function(querySnapshot) {
+				querySnapshot.forEach(function(doc) {
+					// doc.data() is never undefined for query doc snapshots
+				  console.log(doc.id, " => ", doc.data());
+				  $('#userProfilId').val(doc.id);
+				  $('#surname').val(doc.data().surname);
+				  $('#name').val(doc.data().name);
+				  $('#city').val(doc.data().city);
+				  $('#age').val(doc.data().age);
+				  $('#address').val(doc.data().address);
+				});
+			})
+			.catch(function(error) {
+				console.log("Error getting documents: ", error);
+			});
+			
+			
+			
+			
 		} else {
 		  // No user is signed in.
 		}
@@ -28,6 +54,9 @@ function signInWithEmailAndPassword(){
 function logout(){
 	firebase.auth().signOut().then(function() {
 	  // Sign-out successful.
+	  $('#addReminderBtn').css("visibility", "hidden")
+	  $('#editProfilBtn').css("visibility", "hidden")
+	  $('#logoutBtn').css("visibility", "hidden")
 	}).catch(function(error) {
 	// An error happened.
 	});
